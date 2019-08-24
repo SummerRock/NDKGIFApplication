@@ -1,11 +1,9 @@
 #include <stdio.h>
 
 
-
 #include "gif_lib.h"
 
 #include "gif_lib_private.h"
-
 
 
 /*****************************************************************************
@@ -16,12 +14,9 @@
 
 char *
 
-GifErrorString(int ErrorCode)
-
-{
+GifErrorString(int ErrorCode) {
 
     char *Err;
-
 
 
     switch (ErrorCode) {

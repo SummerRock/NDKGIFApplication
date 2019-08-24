@@ -12,7 +12,6 @@ extern "C" {
 #endif /* __cplusplus */
 
 
-
 #define GIFLIB_MAJOR 5
 
 #define GIFLIB_MINOR 0
@@ -20,15 +19,12 @@ extern "C" {
 #define GIFLIB_RELEASE 2
 
 
-
 #define GIF_ERROR   0
 
 #define GIF_OK      1
 
 
-
 #include <stdbool.h>
-
 
 
 #define GIF_STAMP "GIFVER"          /* First chars in file - GIF stamp.  */
@@ -42,7 +38,6 @@ extern "C" {
 #define GIF89_STAMP "GIF89a"        /* First chars in file - GIF stamp.  */
 
 
-
 typedef unsigned char GifPixelType;
 
 typedef unsigned char *GifRowType;
@@ -54,13 +49,11 @@ typedef unsigned int GifPrefixType;
 typedef int GifWord;
 
 
-
 typedef struct GifColorType {
 
     GifByteType Red, Green, Blue;
 
 } GifColorType;
-
 
 
 typedef struct ColorMapObject {
@@ -76,7 +69,6 @@ typedef struct ColorMapObject {
 } ColorMapObject;
 
 
-
 typedef struct GifImageDesc {
 
     GifWord Left, Top, Width, Height;   /* Current image dimensions. */
@@ -86,7 +78,6 @@ typedef struct GifImageDesc {
     ColorMapObject *ColorMap;           /* The local color map */
 
 } GifImageDesc;
-
 
 
 typedef struct ExtensionBlock {
@@ -110,7 +101,6 @@ typedef struct ExtensionBlock {
 } ExtensionBlock;
 
 
-
 typedef struct SavedImage {
 
     GifImageDesc ImageDesc;
@@ -124,7 +114,6 @@ typedef struct SavedImage {
 } SavedImage;
 
 
-
 typedef struct GifFileType {
 
     GifWord SWidth, SHeight;         /* Size of virtual canvas */
@@ -133,7 +122,7 @@ typedef struct GifFileType {
 
     GifWord SBackGroundColor;        /* Background color for virtual canvas */
 
-    GifByteType AspectByte;	     /* Used to compute pixel aspect ratio */
+    GifByteType AspectByte;         /* Used to compute pixel aspect ratio */
 
     ColorMapObject *SColorMap;       /* Global colormap, NULL if nonexistent. */
 
@@ -147,7 +136,7 @@ typedef struct GifFileType {
 
     ExtensionBlock *ExtensionBlocks; /* Extensions past last image */
 
-    int Error;			     /* Last error condition reported */
+    int Error;                 /* Last error condition reported */
 
     void *UserData;                  /* hook to attach user data (TVT) */
 
@@ -156,9 +145,7 @@ typedef struct GifFileType {
 } GifFileType;
 
 
-
-#define GIF_ASPECT_RATIO(n)	((n)+15.0/64.0)
-
+#define GIF_ASPECT_RATIO(n)    ((n)+15.0/64.0)
 
 
 typedef enum {
@@ -176,11 +163,9 @@ typedef enum {
 } GifRecordType;
 
 
-
 /* func type to read gif data from arbitrary sources (TVT) */
 
-typedef int (*InputFunc) (GifFileType *, GifByteType *, int);
-
+typedef int (*InputFunc)(GifFileType *, GifByteType *, int);
 
 
 /* func type to write gif data to arbitrary targets.
@@ -189,8 +174,7 @@ typedef int (*InputFunc) (GifFileType *, GifByteType *, int);
 
  */
 
-typedef int (*OutputFunc) (GifFileType *, const GifByteType *, int);
-
+typedef int (*OutputFunc)(GifFileType *, const GifByteType *, int);
 
 
 /******************************************************************************
@@ -219,7 +203,7 @@ typedef struct GraphicsControlBlock {
 
     int TransparentColor;    /* Palette index for transparency, -1 if none */
 
-#define NO_TRANSPARENT_COLOR	-1
+#define NO_TRANSPARENT_COLOR    -1
 
 } GraphicsControlBlock;
 
@@ -243,12 +227,11 @@ GifFileType *EGifOpenFileHandle(const int GifFileHandle, int *Error);
 
 GifFileType *EGifOpen(void *userPtr, OutputFunc writeFunc, int *Error);
 
-int EGifSpew(GifFileType * GifFile);
+int EGifSpew(GifFileType *GifFile);
 
 char *EGifGetGifVersion(GifFileType *GifFile); /* new in 5.x */
 
-int EGifCloseFile(GifFileType * GifFile);
-
+int EGifCloseFile(GifFileType *GifFile);
 
 
 #define E_GIF_ERR_OPEN_FAILED    1    /* And EGif possible errors. */
@@ -270,7 +253,6 @@ int EGifCloseFile(GifFileType * GifFile);
 #define E_GIF_ERR_CLOSE_FAILED   9
 
 #define E_GIF_ERR_NOT_WRITEABLE  10
-
 
 
 /* These are legacy.  You probably do not want to call them directly */
@@ -343,12 +325,11 @@ GifFileType *DGifOpenFileName(const char *GifFileName, int *Error);
 
 GifFileType *DGifOpenFileHandle(int GifFileHandle, int *Error);
 
-int DGifSlurp(GifFileType * GifFile);
+int DGifSlurp(GifFileType *GifFile);
 
 GifFileType *DGifOpen(void *userPtr, InputFunc readFunc, int *Error);    /* new one (TVT) */
 
-int DGifCloseFile(GifFileType * GifFile);
-
+int DGifCloseFile(GifFileType *GifFile);
 
 
 #define D_GIF_ERR_OPEN_FAILED    101    /* And DGif possible errors. */
@@ -376,7 +357,6 @@ int DGifCloseFile(GifFileType * GifFile);
 #define D_GIF_ERR_IMAGE_DEFECT   112
 
 #define D_GIF_ERR_EOF_TOO_SOON   113
-
 
 
 /* These are legacy.  You probably do not want to call them directly */
@@ -408,9 +388,6 @@ int DGifGetCodeNext(GifFileType *GifFile, GifByteType **GifCodeBlock);
 int DGifGetLZCodes(GifFileType *GifFile, int *GifCode);
 
 
-
-
-
 /******************************************************************************
 
  Color table quantization (deprecated)
@@ -419,14 +396,13 @@ int DGifGetLZCodes(GifFileType *GifFile, int *GifCode);
 
 int GifQuantizeBuffer(unsigned int Width, unsigned int Height,
 
-                      int *ColorMapSize, GifByteType * RedInput,
+                      int *ColorMapSize, GifByteType *RedInput,
 
-                      GifByteType * GreenInput, GifByteType * BlueInput,
+                      GifByteType *GreenInput, GifByteType *BlueInput,
 
-                      GifByteType * OutputBuffer,
+                      GifByteType *OutputBuffer,
 
-                      GifColorType * OutputColorMap);
-
+                      GifColorType *OutputColorMap);
 
 
 /******************************************************************************
@@ -472,7 +448,6 @@ extern ColorMapObject *GifUnionColorMap(const ColorMapObject *ColorIn1,
 extern int GifBitSize(int n);
 
 
-
 /******************************************************************************
 
  Support for the in-core structures allocation (slurp mode).
@@ -502,7 +477,6 @@ extern SavedImage *GifMakeSavedImage(GifFileType *GifFile,
 extern void GifFreeSavedImages(GifFileType *GifFile);
 
 
-
 /******************************************************************************
 
  5.x functions for GIF89 graphics control blocks
@@ -520,7 +494,6 @@ int DGifExtensionToGCB(const size_t GifExtensionLength,
 size_t EGifGCBToExtension(const GraphicsControlBlock *GCB,
 
                           GifByteType *GifExtension);
-
 
 
 int DGifSavedExtensionToGCB(GifFileType *GifFile,
@@ -552,13 +525,11 @@ int EGifGCBToSavedExtension(const GraphicsControlBlock *GCB,
 extern const unsigned char GifAsciiTable8x8[][GIF_FONT_WIDTH];
 
 
-
 extern void GifDrawText8x8(SavedImage *Image,
 
                            const int x, const int y,
 
                            const char *legend, const int color);
-
 
 
 extern void GifDrawBox(SavedImage *Image,
@@ -568,13 +539,11 @@ extern void GifDrawBox(SavedImage *Image,
                        const int w, const int d, const int color);
 
 
-
 extern void GifDrawRectangle(SavedImage *Image,
 
                              const int x, const int y,
 
                              const int w, const int d, const int color);
-
 
 
 extern void GifDrawBoxedText8x8(SavedImage *Image,
@@ -584,7 +553,6 @@ extern void GifDrawBoxedText8x8(SavedImage *Image,
                                 const char *legend,
 
                                 const int border, const int bg, const int fg);
-
 
 
 #ifdef __cplusplus

@@ -4,9 +4,8 @@
 
 #ifndef GIFDRAWABLE_GIF_LIB_PRIVATE_H
 #define GIFDRAWABLE_GIF_LIB_PRIVATE_H
-#include "gif_lib.h"
 
-//#include "gif_hash.h"
+#include "gif_lib.h"
 
 
 
@@ -17,11 +16,9 @@
 #define TERMINATOR_INTRODUCER     0x3b
 
 
-
 #define LZ_MAX_CODE         4095    /* Biggest code possible in 12 bits. */
 
 #define LZ_BITS             12
-
 
 
 #define FLUSH_OUTPUT        4096    /* Impossible code, to signal flush. */
@@ -29,7 +26,6 @@
 #define FIRST_CODE          4097    /* Impossible code, to signal first. */
 
 #define NO_SUCH_CODE        4098    /* Impossible code, to signal empty. */
-
 
 
 #define FILE_STATE_WRITE    0x01
@@ -41,11 +37,9 @@
 #define FILE_STATE_READ     0x08
 
 
-
 #define IS_READABLE(Private)    (Private->FileState & FILE_STATE_READ)
 
 #define IS_WRITEABLE(Private)   (Private->FileState & FILE_STATE_WRITE)
-
 
 
 typedef struct GifFilePrivateType {
